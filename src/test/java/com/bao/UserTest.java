@@ -1,5 +1,6 @@
 package com.bao;
 
+import com.bao.mapper.UserMapper2;
 import com.bao.model.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -11,7 +12,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.List;
-import java.util.ResourceBundle;
+
 
 
 public class UserTest {
@@ -30,7 +31,11 @@ public class UserTest {
     @Test
     public void findUser() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        List<User> users = sqlSession.selectList("findAllUsers");
-        users.forEach(user -> System.out.println(user.getUserName()));
+//        List<User> users = sqlSession.selectList("findAllUsers");
+//        users.forEach(user -> System.out.println(user.getUserName()));
+        UserMapper2 mapper = sqlSession.getMapper(UserMapper2.class);
+        List<User> allUsers = mapper.findAllUsers();
+        allUsers.forEach(user -> System.out.println(user.getUserName()));
     }
+
 }
