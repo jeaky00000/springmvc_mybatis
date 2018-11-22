@@ -8,8 +8,10 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
 import java.io.IOException;
 import java.io.Reader;
+import java.util.Hashtable;
 import java.util.List;
 
 
@@ -34,6 +36,15 @@ public class UserTest {
         UserMapper2 mapper = sqlSession.getMapper(UserMapper2.class);
         List<User> allUsers = mapper.findAllUsers();
         allUsers.forEach(user -> System.out.println(user.getUserName()));
+    }
+
+    @Test
+    public void test() {
+        Hashtable<String,String> table = new Hashtable<>();
+        table.put("zhai", "1");
+        table.put("zhang", "2");
+        table.put("chen", "3");
+        System.out.println(table.contains("1"));
     }
 
 }
