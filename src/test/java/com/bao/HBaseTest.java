@@ -1,10 +1,10 @@
 package com.bao;
 
-
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HTableDescriptor;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
+import org.apache.hadoop.hbase.filter.PrefixFilter;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -39,9 +39,12 @@ public class HBaseTest {
         ResultScanner scanner = table.getScanner(scan);
         for (Result result : scanner) {
             String s = Bytes.toString(result.getValue(Bytes.toBytes("info"), Bytes.toBytes("name")));
-            System.out.println(s);
+            System.err.println(s);
+            String age = Bytes.toString(result.getValue(Bytes.toBytes("info"), Bytes.toBytes("age")));
+            System.err.println(age);
 
         }
+
 
     }
 
